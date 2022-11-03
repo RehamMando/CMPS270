@@ -14,8 +14,8 @@ template <class T> class my_stack{
 };
 //requires: nothing
 //effescts: it return true is the stack is empty and false if the stack contains at least one element.
-//Test cases: 1) empty stack
-//2) non empty stack
+//Test cases: 1) empty stack, retuen true
+//2) non empty stack, return false
 template <class T> bool my_stack<T>::empty(){
     if(front == -1)
         return true;
@@ -26,7 +26,7 @@ template <class T> bool my_stack<T>::empty(){
 //requires: a pointer to a constant variable of a generic type T.
 //effescts: it will add the item to the top of the stack
 //Test cases: 1) try different types of stacks: int, char, double, etc.
-//2) give 0 
+//2) give element of differnt type, it will give an error
 template <class T> void my_stack<T>::push(const T element){
     front++;
     elements[front] = element;
@@ -34,8 +34,8 @@ template <class T> void my_stack<T>::push(const T element){
 
 //requires: nothing
 //effescts: returns a pointer to the element at top of the stak without deleting it
-//Test cases: 1) empty stack
-//2) non empty stack
+//Test cases: 1) empty stack, return null
+//2) non empty stack, return the last element in the stack
 //3) try different types of stacks: int, char, double, etc.
 template <class T> T my_stack<T>::top(){
     return elements[front];
@@ -43,11 +43,17 @@ template <class T> T my_stack<T>::top(){
 
 //requires: nothing
 //effescts: returns the element at top of the stak and delete it
-//Test cases: 1) empty stack
-//2) non empty stack
+//Test cases: 1) empty stack, return null
+//2) non empty stack, return and delete the last element
 //3) try different types of stacks: int, char, double, etc.
 template <class T> T my_stack<T>::pop(){
-    T last_element = elements[front];
-    front--;
-    return last_element;
+    if(empty()){
+        return null;
+    }
+    else{
+        T last_element = elements[front];
+        front--;
+        return last_element;
+    }
 }
+
