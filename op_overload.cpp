@@ -12,12 +12,12 @@ template <class T>
 //Requires: two pointers for two stacks of a the same generic type; 
 //Effects: returns a new stack containing a’s items followed by b’s items (assuming a and b are both Stacks), in their original order
 //Test cases: 1) different types of stacks: int, char, double, etc.
-//2) a is empty while b is not
-//3) b is empty while a is not
-//4) two stacks are empty
-//5) a = {1,2,3} & b = {7,8,2}
-//6) a = {a,f,r} & b = {o,t,e}
-//7) a = {1.5,6.4} & b = {9.4,2.4}
+//2) a is empty while b is not, it will add b to the result_stack
+//3) b is empty while a is not, it will add a to the result_stack
+//4) two stacks are empty, result_stack will be empty
+//5) a = {1,2,3} & b = {7,8,2}, result_stack = {1,2,3,7,8,2}
+//6) a = {a,f,r} & b = {o,t,e},  result_stack = {a,f,r,o,t,e}
+//7) a = {1.5,6.4} & b = {9.4,2.4}, result_stack ={1.5, 6.4, 9.4, 2.4}
 //8) given the same pointer for the two parameters.
 my_stack<T> operator + (my_stack<T> &a,  my_stack<T> &b){
 
@@ -54,13 +54,14 @@ template <class T>class op_overload{
         cout<< "c = a + b = ";
         printStack(c);
         cout<<endl;
+        return 0;
     }
 template <class T> 
 //requires: nothing
     //effects: print the elements of the stack from bottom to top without changing their order.
-    //test cases: 1)emptystack
-    //2) try different types of stacks
-    //3){1,2,3,4}
+    //test cases: 1)emptystack, prints {}
+    //2) try different types of stacks int, double, char
+    //3){1,2,3,4} it should prints 1 2 3 4
         
 void printStack(my_stack<T> st){
         if(st.empty()){  
